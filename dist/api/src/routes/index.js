@@ -13,7 +13,4 @@ router.use("/api", operators_1.default);
 router.use("/api", vehicle_1.default);
 router.use("/api", vehicleRoutes_1.default);
 router.use("/api", trips_1.default);
-router.use("/", (request, response) => {
-    response.send("Funciono");
-});
 exports.default = router;

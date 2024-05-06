@@ -10,8 +10,6 @@ router.use("/api", operatorRoute)
 router.use("/api", vehiclesRouter)
 router.use("/api", routerRouter)
 router.use("/api", tripsRouter)
-router.use("/", (request, response ) => {
-    response.send("Funciono")
-})
+
 
 export default router
