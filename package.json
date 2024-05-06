@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf dist",
-    "start": "watch:build watch:server --print-label",
-    "watch:build": "tsc --watch",
-    "watch:server": "nodemon './dist/main.js' --watch './dist'"
-  },
+    "start": "nodemon src/main.ts",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,6 +23,13 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^5.0.5",
     "typescript": "^5.4.5"
-  }
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+]
 }
