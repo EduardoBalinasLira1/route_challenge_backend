@@ -28,9 +28,8 @@ const getCollections = async ( dbName: string, collectionName: string ) => {
         const collection = await db.collection(collectionName);
     
         return collection
-    }catch {
-        console.log("Fallo algo");
-        return "Error"
+    }catch (error: any) {
+      console.error("An error occurred:", error); 
     } 
     
 }

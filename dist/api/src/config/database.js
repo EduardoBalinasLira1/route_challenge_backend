@@ -34,9 +34,8 @@ const getCollections = (dbName, collectionName) => __awaiter(void 0, void 0, voi
         const collection = yield db.collection(collectionName);
         return collection;
     }
-    catch (_a) {
-        console.log("Fallo algo");
-        return "Error";
+    catch (error) {
+        console.error("An error occurred:", error);
     }
 });
 exports.default = getCollections;
