@@ -8,10 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = `mongodb+srv://eduardobalinaslira:5N9qjUf1CPNYxnDH@cluster0.c8plphw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-//const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CONNECTION}/?retryWrites=true&w=majority&appName=${process.env.DB_APP_NAME}`;
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+//const uri = `mongodb+srv://eduardobalinaslira:5N9qjUf1CPNYxnDH@cluster0.c8plphw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CONNECTION}/?retryWrites=true&w=majority&appName=${process.env.DB_APP_NAME}`;
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -23,13 +28,13 @@ const getCollections = (dbName, collectionName) => __awaiter(void 0, void 0, voi
     try {
         yield client.connect();
         yield client.db("admin").command({ ping: 1 });
-        console.log("Entro a la conexion de la base de datos");
         const db = yield client.db(dbName);
         const collection = yield db.collection(collectionName);
         return collection;
     }
     catch (_a) {
         console.log("Fallo algo");
+        return "Error";
     }
 });
 exports.default = getCollections;

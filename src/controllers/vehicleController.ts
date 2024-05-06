@@ -6,7 +6,7 @@ const getAllVehicle = async (request: Request, response: Response) => {
 
   try {
     const collection = await getCollections("Routes", "Vehicles");
-
+    
     const page = parseInt(request.query.page as string) || 1; 
     const pageSize = parseInt(request.query.pageSize as string) || 10; 
   
