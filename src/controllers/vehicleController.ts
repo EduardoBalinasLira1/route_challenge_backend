@@ -7,19 +7,19 @@ const getAllVehicle = async (request: Request, response: Response) => {
   try {
     const collection = await getCollections("Routes", "Vehicles");
 
-    const page = parseInt(request.query.page as string) || 1; 
-    const pageSize = parseInt(request.query.pageSize as string) || 10; 
-  
+    const page = parseInt(request.query.page as string) || 1;
+    const pageSize = parseInt(request.query.pageSize as string) || 10;
+
     const startIndex = (page - 1) * pageSize;
     const endIndex = page * pageSize;
-  
+
     const totalVehicles = await collection.find().count();
     const vehicles = await collection
       .find()
       .skip(startIndex)
       .limit(pageSize)
       .toArray();
-  
+
     const totalPages = Math.ceil(totalVehicles / pageSize);
     const hasNextPage = endIndex < totalVehicles;
     const data = {
@@ -31,20 +31,23 @@ const getAllVehicle = async (request: Request, response: Response) => {
       hasNextPage: hasNextPage,
       data: vehicles,
     };
-  
+
     return response.status(200).send(
       JSON.stringify({
         message: "All vehicles",
         data: data,
       })
     );
-  } catch {
+} catch (error: any) {
+    console.error("An error occurred:", error); // Logging the error can be helpful for debugging
     return response.status(500).send(
       JSON.stringify({
         message: "Internal Server Error",
+        error: error.message // Sending the error message to the client (optional and should be done carefully)
       })
     );
-  }
+}
+
   
 };
 

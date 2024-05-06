@@ -44,9 +44,11 @@ const getAllVehicle = (request, response) => __awaiter(void 0, void 0, void 0, f
             data: data,
         }));
     }
-    catch (_a) {
+    catch (error) {
+        console.error("An error occurred:", error); // Logging the error can be helpful for debugging
         return response.status(500).send(JSON.stringify({
             message: "Internal Server Error",
+            error: error.message // Sending the error message to the client (optional and should be done carefully)
         }));
     }
 });
@@ -67,7 +69,7 @@ const createVehicle = (request, response) => __awaiter(void 0, void 0, void 0, f
             data: result,
         }));
     }
-    catch (_b) {
+    catch (_a) {
         response.status(500).send(JSON.stringify({
             message: "Internal Server Error",
         }));
@@ -92,7 +94,7 @@ const updateVehicle = (request, response) => __awaiter(void 0, void 0, void 0, f
             }));
         }
     }
-    catch (_c) {
+    catch (_b) {
         response.status(500).send(JSON.stringify({
             message: "Internal Server Error",
         }));
@@ -115,7 +117,7 @@ const deleteVehicle = (request, response) => __awaiter(void 0, void 0, void 0, f
             }));
         }
     }
-    catch (_d) {
+    catch (_c) {
         response.status(500).send(JSON.stringify({
             message: "Internal Server Error",
         }));
