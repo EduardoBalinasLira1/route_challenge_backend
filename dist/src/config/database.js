@@ -8,13 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CONNECTION}/?retryWrites=true&w=majority&appName=${process.env.DB_APP_NAME}`;
 const client = new MongoClient(uri, {
     serverApi: {
@@ -27,7 +22,6 @@ const getCollections = (dbName, collectionName) => __awaiter(void 0, void 0, voi
     try {
         yield client.connect();
         yield client.db("admin").command({ ping: 1 });
-        console.log("Conexion exitsoasa");
         const db = yield client.db(dbName);
         const collection = yield db.collection(collectionName);
         return collection;
