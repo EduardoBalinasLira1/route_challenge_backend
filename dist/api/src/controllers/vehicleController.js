@@ -39,13 +39,13 @@ const getAllVehicle = (request, response) => __awaiter(void 0, void 0, void 0, f
             hasNextPage: hasNextPage,
             data: vehicles,
         };
-        response.status(200).send(JSON.stringify({
+        return response.status(200).send(JSON.stringify({
             message: "All vehicles",
             data: data,
         }));
     }
     catch (_a) {
-        response.status(500).send(JSON.stringify({
+        return response.status(500).send(JSON.stringify({
             message: "Internal Server Error",
         }));
     }

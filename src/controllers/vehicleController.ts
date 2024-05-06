@@ -32,14 +32,14 @@ const getAllVehicle = async (request: Request, response: Response) => {
       data: vehicles,
     };
   
-    response.status(200).send(
+    return response.status(200).send(
       JSON.stringify({
         message: "All vehicles",
         data: data,
       })
     );
   } catch {
-    response.status(500).send(
+    return response.status(500).send(
       JSON.stringify({
         message: "Internal Server Error",
       })

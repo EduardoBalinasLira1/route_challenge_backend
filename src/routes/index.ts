@@ -6,9 +6,9 @@ import tripsRouter from "./trips/trips"
 
 const router = Router();
 
-router.use("/api", operatorRoute)
-router.use("/api", vehiclesRouter)
-router.use("/api", routerRouter)
-router.use("/api", tripsRouter)
+router.use("/", operatorRoute)
+router.use("/", vehiclesRouter)
+router.use("/", routerRouter)
+router.use("/", tripsRouter)
 
 export default router
